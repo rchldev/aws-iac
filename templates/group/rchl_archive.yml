@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: RCHL Archive Stack
+
+Resources:
+    S3BucketGlacierArchive:
+        Type: AWS::S3::Bucket
+        Properties:
+            BucketName: rchl-archive-glacier-s3
+            LifecycleConfiguration:
+                Rules:
+                    - Id: ForceGlacierStorageClass
+                      Status: Enabled
+                      Transitions:
+                          - StorageClass: DEEP_ARCHIVE
+                            TransitionInDays: 0
+
