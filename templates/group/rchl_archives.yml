@@ -6,6 +6,11 @@ Resources:
         Type: AWS::S3::Bucket
         Properties:
             BucketName: rchl-archive-glacier-s3
+            PublicAccessBlockConfiguration:
+                BlockPublicAcls: true
+                BlockPublicPolicy: true
+                IgnorePublicAcls: true
+                RestrictPublicBuckets: true
             LifecycleConfiguration:
                 Rules:
                     - Id: ForceGlacierStorageClass
@@ -13,4 +18,3 @@ Resources:
                       Transitions:
                           - StorageClass: DEEP_ARCHIVE
                             TransitionInDays: 0
-
